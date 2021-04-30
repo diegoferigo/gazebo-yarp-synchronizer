@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 3.16)
+# CMake version recommended by pybind11
+# https://pybind11.readthedocs.io/en/stable/compiling.html#findpython-mode
+cmake_minimum_required(VERSION 3.18.2)
 project(GazeboPythonSynchronizer VERSION 1.0 LANGUAGES CXX C)
 
 # Add custom functions / macros
