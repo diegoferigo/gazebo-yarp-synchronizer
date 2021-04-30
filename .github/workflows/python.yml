@@ -99,7 +99,8 @@ jobs:
                   /etc/apt/sources.list.d/icub.list &&\
               apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 57A5ACB6110576A6 &&\
               apt-get update &&\
-              apt-get install -y --no-install-recommends yarp
+              apt-get install -y --no-install-recommends yarp &&\
+              ln -s /usr/lib/libACE.so /usr/lib/libACE-6.4.5.so
           CIBW_TEST_COMMAND: "python -c 'from gazebo_python_synchronizer import ClockServer'"
 
       - uses: actions/upload-artifact@v2
