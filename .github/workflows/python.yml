@@ -86,10 +86,17 @@ jobs:
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_24
           CIBW_ENVIRONMENT_LINUX: AUDITWHEEL_PLAT=manylinux_2_24_x86_64
           CIBW_BEFORE_BUILD_LINUX: |
+              echo "deb http://ftp.debian.org/debian stretch-backports main" | tee -a \
+                  /etc/apt/sources.list.d/stretch-backports.list &&\
+              echo "deb http://ftp.debian.org/debian stretch-backports-sloppy main" | tee -a \
+                  /etc/apt/sources.list.d/stretch-backports-sloppy.list &&\
               apt-get update &&\
-              apt-get install -y --no-install-recommends lsb-release lsb-core dirmngr &&\
-              echo "deb http://www.icub.org/debian $(lsb_release -cs) contrib/science" \
-                  > /etc/apt/sources.list.d/icub.list &&\
+              apt-get install -y --no-install-recommends \
+                  lsb-release lsb-core dirmngr &&\
+              apt-get install -y --no-install-recommends -t stretch-backports-sloppy libarchive13 &&\
+              apt-get install -y --no-install-recommends -t stretch-backports cmake &&\
+              echo "deb http://www.icub.org/debian buster contrib/science" | tee -a \
+                  /etc/apt/sources.list.d/icub.list &&\
               apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 57A5ACB6110576A6 &&\
               apt-get update &&\
               apt-get install -y --no-install-recommends yarp
