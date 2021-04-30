@@ -47,6 +47,7 @@ setup(
     ext_modules=[
         CMakeExtension(name='InstallAllTargets',
                        install_prefix="gazebo_python_synchronizer",
+                       cmake_depends_on=["pybind11"],
                        disable_editable=True,
                        cmake_configure_options=[
                            "-DGPS_CALL_FROM_SETUP_PY:BOOL=ON",
