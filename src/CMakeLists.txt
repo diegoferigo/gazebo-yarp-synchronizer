@@ -45,4 +45,5 @@ endif()
 
 # Add sources
 add_subdirectory(thrift)
+add_subdirectory(gazebo)
 add_subdirectory(bindings)

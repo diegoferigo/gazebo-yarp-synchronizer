@@ -46,7 +46,7 @@ jobs:
         run: pip -v install dist/*.tar.gz
 
       - name: Test import
-        run: python -c 'from gazebo_python_synchronizer import ClockServer'
+        run: python -c 'from gazebo_python_synchronizer import GazeboSynchronizer'
 
       - uses: actions/upload-artifact@v2
         with:
@@ -101,7 +101,7 @@ jobs:
               apt-get update &&\
               apt-get install -y --no-install-recommends yarp &&\
               ln -s /usr/lib/libACE.so /usr/lib/libACE-6.4.5.so
-          CIBW_TEST_COMMAND: "python -c 'from gazebo_python_synchronizer import ClockServer'"
+          CIBW_TEST_COMMAND: "python -c 'from gazebo_python_synchronizer import GazeboSynchronizer'"
 
       - uses: actions/upload-artifact@v2
         with:

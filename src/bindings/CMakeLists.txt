@@ -9,7 +9,7 @@ pybind11_add_module(pybind11_gps
     ${CMAKE_CURRENT_SOURCE_DIR}/gazebo_python_synchronizer.cpp)
 
 # Link the bindings against ClockRpc
-target_link_libraries(pybind11_gps PRIVATE ClockRpc)
+target_link_libraries(pybind11_gps PRIVATE GazeboSynchronizer)
 
 # Folder of the Python package within the build tree
 set(GPS_PYTHON_PACKAGE "${CMAKE_BINARY_DIR}/gazebo_python_synchronizer")
@@ -21,7 +21,7 @@ set_target_properties(pybind11_gps PROPERTIES
 # Create the __init__.py file
 file(GENERATE
     OUTPUT "${GPS_PYTHON_PACKAGE}/__init__.py"
-    CONTENT "from .bindings import ClockServer")
+    CONTENT "from .bindings import GazeboSynchronizer")
 
 # Allow installing the CMake projects in the active site-package folder.
 # Warning: it could be a system folder!
