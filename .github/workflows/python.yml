@@ -117,7 +117,7 @@ jobs:
     if: |
       github.repository == 'diegoferigo/gazebo-python-synchronizer' &&
       ((github.event_name == 'release' && github.event.action == 'published') ||
-       (github.event_name == 'push' && github.ref == 'refs/heads/master'))
+       (github.event_name == 'push' && github.ref == 'refs/heads/main'))
 
     steps:
 
