@@ -50,6 +50,7 @@ setup(
                        cmake_depends_on=["pybind11"],
                        disable_editable=True,
                        cmake_configure_options=[
+                           "-DBUILD_SHARED_LIBS:BOOL=OFF",
                            "-DGPS_CALL_FROM_SETUP_PY:BOOL=ON",
                        ])],
     cmdclass=dict(build_ext=BuildExtension),
