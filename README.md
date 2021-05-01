@@ -1,10 +1,10 @@
-# gazebo-python-synchronizer
+# gazebo-synchronizer
 
 Synchronization between Python and Gazebo Classic via YARP.
 
 ## Dependencies
 
-`gazebo-python-synchronizer` expects to find installed and configured the following dependencies:
+`gazebo-synchronizer` expects to find installed and configured the following dependencies:
 
 - [`robotology/yarp`](https://github.com/robotology/yarp)
 - [`robotology/gazebo-yarp-plugins`](https://github.com/robotology/gazebo-yarp-plugins)
@@ -13,7 +13,7 @@ Synchronization between Python and Gazebo Classic via YARP.
 ## Installation
 
 ```bash
-pip3 install gazebo-python-synchronizer
+pip3 install gazebo-synchronizer
 ```
 
 ## Usage
@@ -39,7 +39,7 @@ Then, in the Python interpreter:
 
 ```python
 # Import the module
->>> from gazebo_python_synchronizer import GazeboSynchronizer
+>>> from gazebo_synchronizer import GazeboSynchronizer
 
 # Create the Gazebo synchronizer
 >>> gazebo_synchronizer = GazeboSynchronizer(gazebo_rpc_port_name="/clock/rpc")

@@ -6,13 +6,13 @@ find_package(pybind11 CONFIG REQUIRED)
 
 # Create the pybind11 module
 pybind11_add_module(pybind11_gps
-    ${CMAKE_CURRENT_SOURCE_DIR}/gazebo_python_synchronizer.cpp)
+    ${CMAKE_CURRENT_SOURCE_DIR}/gazebo_synchronizer.cpp)
 
 # Link the bindings against ClockRpc
 target_link_libraries(pybind11_gps PRIVATE GazeboSynchronizer)
 
 # Folder of the Python package within the build tree
-set(GPS_PYTHON_PACKAGE "${CMAKE_BINARY_DIR}/gazebo_python_synchronizer")
+set(GPS_PYTHON_PACKAGE "${CMAKE_BINARY_DIR}/gazebo_synchronizer")
 
 set_target_properties(pybind11_gps PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${GPS_PYTHON_PACKAGE}"
@@ -29,7 +29,7 @@ option(GPS_DETECT_ACTIVE_PYTHON_SITEPACKAGES "Detect the active Python interpret
 
 # Handle where to install the resulting Python package
 if(GPS_DETECT_ACTIVE_PYTHON_SITEPACKAGES)
-    set(PYTHON_INSTDIR ${Python3_SITELIB}/gazebo_python_synchronizer)
+    set(PYTHON_INSTDIR ${Python3_SITELIB}/gazebo_synchronizer)
 elseif(GPS_CALL_FROM_SETUP_PY)
     set(PYTHON_INSTDIR ${CMAKE_INSTALL_PREFIX})
 else()
@@ -37,7 +37,7 @@ else()
         "from distutils import sysconfig; print(sysconfig.get_python_lib(1,0,prefix=''))"
         OUTPUT_VARIABLE _PYTHON_INSTDIR)
     string(STRIP ${_PYTHON_INSTDIR} GPS_PYTHON_INSTALL_DIR)
-    set(PYTHON_INSTDIR ${GPS_PYTHON_INSTALL_DIR}/gazebo_python_synchronizer)
+    set(PYTHON_INSTDIR ${GPS_PYTHON_INSTALL_DIR}/gazebo_synchronizer)
 endif()
 
 # Install the __init__.py file
