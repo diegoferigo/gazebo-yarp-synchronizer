@@ -29,8 +29,8 @@ if(NOT CMAKE_CONFIGURATION_TYPES)
         set(CMAKE_BUILD_TYPE "Release" CACHE STRING
             "Choose the type of build, recommended options are: Debug or Release" FORCE)
     endif()
-    set(GPS_BUILD_TYPES "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
-    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${GPS_BUILD_TYPES})
+    set(GS_BUILD_TYPES "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
+    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${GS_BUILD_TYPES})
 endif()
 
 # Tweak linker flags in Linux

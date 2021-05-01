@@ -5,47 +5,47 @@ find_package(Python3 COMPONENTS Interpreter Development.Module REQUIRED)
 find_package(pybind11 CONFIG REQUIRED)
 
 # Create the pybind11 module
-pybind11_add_module(pybind11_gps
+pybind11_add_module(pybind11_gs
     ${CMAKE_CURRENT_SOURCE_DIR}/gazebo_synchronizer.cpp)
 
 # Link the bindings against ClockRpc
-target_link_libraries(pybind11_gps PRIVATE GazeboSynchronizer)
+target_link_libraries(pybind11_gs PRIVATE GazeboSynchronizer)
 
 # Folder of the Python package within the build tree
-set(GPS_PYTHON_PACKAGE "${CMAKE_BINARY_DIR}/gazebo_synchronizer")
+set(GS_PYTHON_PACKAGE "${CMAKE_BINARY_DIR}/gazebo_synchronizer")
 
-set_target_properties(pybind11_gps PROPERTIES
-    LIBRARY_OUTPUT_DIRECTORY "${GPS_PYTHON_PACKAGE}"
+set_target_properties(pybind11_gs PROPERTIES
+    LIBRARY_OUTPUT_DIRECTORY "${GS_PYTHON_PACKAGE}"
     OUTPUT_NAME "bindings")
 
 # Create the __init__.py file
 file(GENERATE
-    OUTPUT "${GPS_PYTHON_PACKAGE}/__init__.py"
+    OUTPUT "${GS_PYTHON_PACKAGE}/__init__.py"
     CONTENT "from .bindings import GazeboSynchronizer")
 
 # Allow installing the CMake projects in the active site-package folder.
 # Warning: it could be a system folder!
-option(GPS_DETECT_ACTIVE_PYTHON_SITEPACKAGES "Detect the active Python interpreter" OFF)
+option(GS_DETECT_ACTIVE_PYTHON_SITEPACKAGES "Detect the active Python interpreter" OFF)
 
 # Handle where to install the resulting Python package
-if(GPS_DETECT_ACTIVE_PYTHON_SITEPACKAGES)
+if(GS_DETECT_ACTIVE_PYTHON_SITEPACKAGES)
     set(PYTHON_INSTDIR ${Python3_SITELIB}/gazebo_synchronizer)
-elseif(GPS_CALL_FROM_SETUP_PY)
+elseif(GS_CALL_FROM_SETUP_PY)
     set(PYTHON_INSTDIR ${CMAKE_INSTALL_PREFIX})
 else()
     execute_process(COMMAND ${Python3_EXECUTABLE} -c
         "from distutils import sysconfig; print(sysconfig.get_python_lib(1,0,prefix=''))"
         OUTPUT_VARIABLE _PYTHON_INSTDIR)
-    string(STRIP ${_PYTHON_INSTDIR} GPS_PYTHON_INSTALL_DIR)
-    set(PYTHON_INSTDIR ${GPS_PYTHON_INSTALL_DIR}/gazebo_synchronizer)
+    string(STRIP ${_PYTHON_INSTDIR} GS_PYTHON_INSTALL_DIR)
+    set(PYTHON_INSTDIR ${GS_PYTHON_INSTALL_DIR}/gazebo_synchronizer)
 endif()
 
 # Install the __init__.py file
-install(FILES "${GPS_PYTHON_PACKAGE}/__init__.py"
+install(FILES "${GS_PYTHON_PACKAGE}/__init__.py"
        DESTINATION ${PYTHON_INSTDIR})
 
 # Install the target
-install(TARGETS pybind11_gps
+install(TARGETS pybind11_gs
     LIBRARY DESTINATION ${PYTHON_INSTDIR}
     ARCHIVE DESTINATION ${PYTHON_INSTDIR}
     RUNTIME DESTINATION ${PYTHON_INSTDIR})
