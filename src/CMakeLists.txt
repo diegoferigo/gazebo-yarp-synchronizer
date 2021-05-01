@@ -47,3 +47,12 @@ endif()
 add_subdirectory(thrift)
 add_subdirectory(gazebo)
 add_subdirectory(bindings)
+
+# Export the targets
+include(InstallBasicPackageFiles)
+install_basic_package_files(
+    ${PROJECT_NAME}
+    VERSION ${${PROJECT_NAME}_VERSION}
+    COMPATIBILITY AnyNewerVersion
+    VARS_PREFIX ${PROJECT_NAME}
+    NO_CHECK_REQUIRED_COMPONENTS_MACRO)

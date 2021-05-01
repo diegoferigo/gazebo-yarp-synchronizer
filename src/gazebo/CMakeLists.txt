@@ -2,17 +2,19 @@
 add_library(GazeboSynchronizer
     ${CMAKE_CURRENT_SOURCE_DIR}/GazeboSynchronizer.h
     ${CMAKE_CURRENT_SOURCE_DIR}/GazeboSynchronizer.cpp)
+add_library(GazeboSynchronizer::GazeboSynchronizer ALIAS GazeboSynchronizer)
 
 # Add include directory
 target_include_directories(GazeboSynchronizer PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>")
 
 # Link against ClockRpc
-target_link_libraries(GazeboSynchronizer PUBLIC ClockRpc)
+target_link_libraries(GazeboSynchronizer PUBLIC GazeboSynchronizer::ClockRpc)
 
 # Configure install
 install(
     TARGETS GazeboSynchronizer
+    EXPORT GazeboSynchronizer
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
