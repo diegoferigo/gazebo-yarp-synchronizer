@@ -1,16 +1,16 @@
-#ifndef GPS_GAZEBO_SYNCHRONIZER_H
-#define GPS_GAZEBO_SYNCHRONIZER_H
+#ifndef GS_GAZEBO_SYNCHRONIZER_H
+#define GS_GAZEBO_SYNCHRONIZER_H
 
 #include "ClockServer.h"
 
 #include <memory>
 #include <string>
 
-namespace gps {
+namespace gs {
     class GazeboSynchronizer;
-} // namespace gps
+} // namespace gs
 
-class gps::GazeboSynchronizer : public GazeboYarpPlugins::ClockServer
+class gs::GazeboSynchronizer : public GazeboYarpPlugins::ClockServer
 {
 public:
     GazeboSynchronizer(const std::string& gazeboRpcPortName,
@@ -28,4 +28,4 @@ private:
     std::unique_ptr<Impl> pImpl;
 };
 
-#endif // GPS_GAZEBO_SYNCHRONIZER_H
+#endif // GS_GAZEBO_SYNCHRONIZER_H
