@@ -2,6 +2,8 @@
 
 Synchronization between Python and Gazebo Classic via YARP.
 
+This project is the client side of the [Clock Plugin](https://github.com/robotology/gazebo-yarp-plugins/tree/master/plugins/clock) included in [`robotology/gazebo-yarp-plugins`](https://github.com/robotology/gazebo-yarp-plugins), with some sugar on top. It provides [`GazeboSynchronizer`](https://github.com/diegoferigo/gazebo-synchronizer/tree/main/src/gazebo), a new class that extends the automatically generated resources from the [thrift service](https://github.com/diegoferigo/gazebo-synchronizer/tree/main/src/thrift) and provides initialization and termination helpers. The main scope of this repository is providing a PyPI package for Python usage, but nothing prevents importing and using it from plain C++. 
+
 ## Dependencies
 
 `gazebo-synchronizer` expects to find installed and configured the following dependencies:
