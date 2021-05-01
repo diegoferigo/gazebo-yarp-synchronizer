@@ -9,3 +9,10 @@ target_include_directories(GazeboSynchronizer PUBLIC
 
 # Link against ClockRpc
 target_link_libraries(GazeboSynchronizer PUBLIC ClockRpc)
+
+# Configure install
+install(
+    TARGETS GazeboSynchronizer
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
