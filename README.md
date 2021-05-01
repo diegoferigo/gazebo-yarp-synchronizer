@@ -1,5 +1,12 @@
 # gazebo-synchronizer
 
+[![Version](https://img.shields.io/pypi/v/gazebo-synchronizer.svg)](https://pypi.org/project/gazebo-synchronizer/)
+[![Python versions](https://img.shields.io/pypi/pyversions/gazebo-synchronizer.svg)](https://pypi.org/project/gazebo-synchronizer/)
+[![Status](https://img.shields.io/pypi/status/gazebo-synchronizer.svg)](https://pypi.org/project/gazebo-synchronizer/)
+[![Format](https://img.shields.io/pypi/format/gazebo-synchronizer.svg)](https://pypi.org/project/gazebo-synchronizer/)
+[![License](https://img.shields.io/pypi/l/gazebo-synchronizer.svg)](https://pypi.org/project/gazebo-synchronizer/)
+[![Python CI/CD](https://github.com/diegoferigo/gazebo-synchronizer/workflows/Python%20CI/CD/badge.svg)](https://github.com/diegoferigo/gazebo-synchronizer/actions)
+
 Synchronization between Python and Gazebo Classic via YARP.
 
 This project is the client side of the [Clock Plugin](https://github.com/robotology/gazebo-yarp-plugins/tree/master/plugins/clock) included in [`robotology/gazebo-yarp-plugins`](https://github.com/robotology/gazebo-yarp-plugins), with some sugar on top. It provides [`GazeboSynchronizer`](https://github.com/diegoferigo/gazebo-synchronizer/tree/main/src/gazebo), a new class that extends the automatically generated resources from the [thrift service](https://github.com/diegoferigo/gazebo-synchronizer/tree/main/src/thrift) and provides initialization and termination helpers. The main scope of this repository is providing a PyPI package for Python usage, but nothing prevents importing and using it from plain C++. 
