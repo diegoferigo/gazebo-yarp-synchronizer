@@ -8,7 +8,7 @@ with open(os.path.join(this_directory, "README.md"), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name="gazebo_synchronizer",
+    name="gazebo_yarp_synchronizer",
     author="Diego Ferigo",
     author_email="diego.ferigo@iit.it",
     description="Synchronization between Python and Gazebo Classic via YARP.",
@@ -46,7 +46,7 @@ setup(
     install_requires=[],
     ext_modules=[
         CMakeExtension(name='InstallAllTargets',
-                       install_prefix="gazebo_synchronizer",
+                       install_prefix="gazebo_yarp_synchronizer",
                        cmake_depends_on=["pybind11"],
                        disable_editable=True,
                        cmake_configure_options=[

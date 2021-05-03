@@ -1,11 +1,11 @@
-#include "GazeboSynchronizer.h"
+#include "GazeboYarpSynchronizer.h"
 
 #include <iostream>
 #include <stdexcept>
 #include <yarp/os/Network.h>
 #include <yarp/os/Port.h>
 
-class gs::GazeboSynchronizer::Impl
+class gs::GazeboYarpSynchronizer::Impl
 {
 public:
     std::string clientRpcPortName;
@@ -15,8 +15,9 @@ public:
     std::unique_ptr<yarp::os::Network> network;
 };
 
-gs::GazeboSynchronizer::GazeboSynchronizer(const std::string& gazeboRpcPortName,
-                                           const std::string& clientRpcPortName)
+gs::GazeboYarpSynchronizer::GazeboYarpSynchronizer(
+    const std::string& gazeboRpcPortName,
+    const std::string& clientRpcPortName)
     : GazeboYarpPlugins::ClockServer()
     , pImpl{std::make_unique<Impl>()}
 {
@@ -31,12 +32,12 @@ gs::GazeboSynchronizer::GazeboSynchronizer(const std::string& gazeboRpcPortName,
     pImpl->network = std::make_unique<yarp::os::Network>();
 }
 
-gs::GazeboSynchronizer::~GazeboSynchronizer()
+gs::GazeboYarpSynchronizer::~GazeboYarpSynchronizer()
 {
     this->fini();
 }
 
-void gs::GazeboSynchronizer::init()
+void gs::GazeboYarpSynchronizer::init()
 {
     // Check if the network is initialized
     if (!yarp::os::Network::initialized()
@@ -62,7 +63,7 @@ void gs::GazeboSynchronizer::init()
     this->yarp().attachAsClient(pImpl->clientPort);
 }
 
-void gs::GazeboSynchronizer::fini()
+void gs::GazeboYarpSynchronizer::fini()
 {
     // Disconnect the ports
     if (pImpl->clientPort.isOpen()
@@ -77,13 +78,13 @@ void gs::GazeboSynchronizer::fini()
     pImpl->clientPort.close();
 }
 
-void gs::GazeboSynchronizer::runSimulation(const double duration)
+void gs::GazeboYarpSynchronizer::runSimulation(const double duration)
 {
     const std::int32_t numberOfSteps = duration / this->getStepSize();
     this->stepSimulation(numberOfSteps);
 }
 
-void gs::GazeboSynchronizer::runSimulationAndWait(const double duration)
+void gs::GazeboYarpSynchronizer::runSimulationAndWait(const double duration)
 {
     const std::int32_t numberOfSteps = duration / this->getStepSize();
     this->stepSimulationAndWait(numberOfSteps);

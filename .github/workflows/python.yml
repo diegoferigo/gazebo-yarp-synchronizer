@@ -46,7 +46,7 @@ jobs:
         run: pip -v install dist/*.tar.gz
 
       - name: Test import
-        run: python -c 'from gazebo_synchronizer import GazeboSynchronizer'
+        run: python -c 'from gazebo_yarp_synchronizer import GazeboYarpSynchronizer'
 
       - uses: actions/upload-artifact@v2
         with:
@@ -101,7 +101,7 @@ jobs:
               apt-get update &&\
               apt-get install -y --no-install-recommends yarp &&\
               ln -s /usr/lib/libACE.so /usr/lib/libACE-6.4.5.so
-          CIBW_TEST_COMMAND: "python -c 'from gazebo_synchronizer import GazeboSynchronizer'"
+          CIBW_TEST_COMMAND: "python -c 'from gazebo_yarp_synchronizer import GazeboYarpSynchronizer'"
 
       - uses: actions/upload-artifact@v2
         with:
@@ -115,7 +115,7 @@ jobs:
     # Master branch produces pre-releases.
     # Tagged versions produce stable releases linked to GitHub releases.
     if: |
-      github.repository == 'diegoferigo/gazebo-synchronizer' &&
+      github.repository == 'diegoferigo/gazebo-yarp-synchronizer' &&
       ((github.event_name == 'release' && github.event.action == 'published') ||
        (github.event_name == 'push' && github.ref == 'refs/heads/main'))
 

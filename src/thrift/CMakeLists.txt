@@ -5,7 +5,7 @@ yarp_add_idl(CLOCK_RPC_FILES clock_rpc.thrift)
 
 # Add the library target
 add_library(ClockRpc ${CLOCK_RPC_FILES} clock_rpc.thrift)
-add_library(GazeboSynchronizer::ClockRpc ALIAS ClockRpc)
+add_library(GazeboYarpSynchronizer::ClockRpc ALIAS ClockRpc)
 
 # Link it against YARP
 find_package(YARP 3.0.0 REQUIRED)
@@ -15,7 +15,7 @@ target_include_directories(ClockRpc PUBLIC "$<BUILD_INTERFACE:${YARP_ADD_IDL_INC
 # Configure install
 install(
     TARGETS ClockRpc
-    EXPORT GazeboSynchronizer
+    EXPORT GazeboYarpSynchronizer
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
