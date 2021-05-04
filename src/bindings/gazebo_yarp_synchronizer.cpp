@@ -1,4 +1,4 @@
-#include "GazeboYarpSynchronizer.h"
+#include "gys/GazeboYarpSynchronizer.h"
 #include <pybind11/pybind11.h>
 #include <string>
 

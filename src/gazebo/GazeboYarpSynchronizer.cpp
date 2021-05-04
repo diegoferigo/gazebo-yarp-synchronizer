@@ -1,4 +1,4 @@
-#include "GazeboYarpSynchronizer.h"
+#include "gys/GazeboYarpSynchronizer.h"
 
 #include <iostream>
 #include <stdexcept>
