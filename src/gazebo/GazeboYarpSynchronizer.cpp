@@ -5,7 +5,7 @@
 #include <yarp/os/Network.h>
 #include <yarp/os/Port.h>
 
-class gs::GazeboYarpSynchronizer::Impl
+class gys::GazeboYarpSynchronizer::Impl
 {
 public:
     std::string clientRpcPortName;
@@ -15,7 +15,7 @@ public:
     std::unique_ptr<yarp::os::Network> network;
 };
 
-gs::GazeboYarpSynchronizer::GazeboYarpSynchronizer(
+gys::GazeboYarpSynchronizer::GazeboYarpSynchronizer(
     const std::string& gazeboRpcPortName,
     const std::string& clientRpcPortName)
     : GazeboYarpPlugins::ClockServer()
@@ -32,12 +32,12 @@ gs::GazeboYarpSynchronizer::GazeboYarpSynchronizer(
     pImpl->network = std::make_unique<yarp::os::Network>();
 }
 
-gs::GazeboYarpSynchronizer::~GazeboYarpSynchronizer()
+gys::GazeboYarpSynchronizer::~GazeboYarpSynchronizer()
 {
     this->fini();
 }
 
-void gs::GazeboYarpSynchronizer::init()
+void gys::GazeboYarpSynchronizer::init()
 {
     // Check if the network is initialized
     if (!yarp::os::Network::initialized()
@@ -63,7 +63,7 @@ void gs::GazeboYarpSynchronizer::init()
     this->yarp().attachAsClient(pImpl->clientPort);
 }
 
-void gs::GazeboYarpSynchronizer::fini()
+void gys::GazeboYarpSynchronizer::fini()
 {
     // Disconnect the ports
     if (pImpl->clientPort.isOpen()
@@ -78,13 +78,13 @@ void gs::GazeboYarpSynchronizer::fini()
     pImpl->clientPort.close();
 }
 
-void gs::GazeboYarpSynchronizer::runSimulation(const double duration)
+void gys::GazeboYarpSynchronizer::runSimulation(const double duration)
 {
     const std::int32_t numberOfSteps = duration / this->getStepSize();
     this->stepSimulation(numberOfSteps);
 }
 
-void gs::GazeboYarpSynchronizer::runSimulationAndWait(const double duration)
+void gys::GazeboYarpSynchronizer::runSimulationAndWait(const double duration)
 {
     const std::int32_t numberOfSteps = duration / this->getStepSize();
     this->stepSimulationAndWait(numberOfSteps);

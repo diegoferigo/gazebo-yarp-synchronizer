@@ -1,16 +1,16 @@
-#ifndef GS_GAZEBO_YARP_SYNCHRONIZER_H
-#define GS_GAZEBO_YARP_SYNCHRONIZER_H
+#ifndef GYS_GAZEBO_YARP_SYNCHRONIZER_H
+#define GYS_GAZEBO_YARP_SYNCHRONIZER_H
 
 #include "ClockServer.h"
 
 #include <memory>
 #include <string>
 
-namespace gs {
+namespace gys {
     class GazeboYarpSynchronizer;
-} // namespace gs
+} // namespace gys
 
-class gs::GazeboYarpSynchronizer : public GazeboYarpPlugins::ClockServer
+class gys::GazeboYarpSynchronizer : public GazeboYarpPlugins::ClockServer
 {
 public:
     GazeboYarpSynchronizer(const std::string& gazeboRpcPortName,
@@ -28,4 +28,4 @@ private:
     std::unique_ptr<Impl> pImpl;
 };
 
-#endif // GS_GAZEBO_YARP_SYNCHRONIZER_H
+#endif // GYS_GAZEBO_YARP_SYNCHRONIZER_H

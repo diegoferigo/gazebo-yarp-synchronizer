@@ -51,7 +51,7 @@ setup(
                        disable_editable=True,
                        cmake_configure_options=[
                            "-DBUILD_SHARED_LIBS:BOOL=OFF",
-                           "-DGS_CALL_FROM_SETUP_PY:BOOL=ON",
+                           "-DGYS_CALL_FROM_SETUP_PY:BOOL=ON",
                        ])],
     cmdclass=dict(build_ext=BuildExtension),
     zip_safe=False,
