@@ -2,6 +2,8 @@ name: Python CI/CD
 
 on:
   push:
+    branches: [ '**' ]
+    tags-ignore: [ '**' ]
   pull_request:
   release:
     types:
@@ -12,11 +14,6 @@ jobs:
   build_sdist:
     name: Build source distribution
     runs-on: ubuntu-20.04
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version:
-          - 3.8
 
     steps:
 
@@ -26,7 +23,7 @@ jobs:
       - name: Install Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.8
 
       - name: Install sdist dependencies
         run: pip install build
@@ -47,6 +44,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
+          name: dist
           path: dist/*.tar.gz
 
   build_wheels:
@@ -55,8 +53,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version:
-          - 3.8
         os:
           - ubuntu-20.04
           #- macos-latest
@@ -70,7 +66,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.8
 
       - name: Install cibuildwheel
         run: pip install cibuildwheel
@@ -89,6 +85,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
+          name: dist
           path: ./wheelhouse/*.whl
 
   upload_pypi:
@@ -98,19 +95,22 @@ jobs:
     runs-on: ubuntu-latest
     # Master branch produces pre-releases.
     # Tagged versions produce stable releases linked to GitHub releases.
-    if: |
-      github.repository == 'diegoferigo/gazebo-yarp-synchronizer' &&
-      ((github.event_name == 'release' && github.event.action == 'published') ||
-       (github.event_name == 'push' && github.ref == 'refs/heads/main'))
 
     steps:
 
       - uses: actions/download-artifact@v2
         with:
-          name: artifact
+          name: dist
           path: dist
 
+      - name: Inspect dist folder
+        run: ls -lah dist/
+
       - uses: pypa/gh-action-pypi-publish@master
+        if: |
+          github.repository == 'diegoferigo/gazebo-yarp-synchronizer' &&
+          ((github.event_name == 'release' && github.event.action == 'published') ||
+           (github.event_name == 'push' && github.ref == 'refs/heads/main'))
         with:
           user: __token__
           password: ${{ secrets.PYPI_TOKEN }}
