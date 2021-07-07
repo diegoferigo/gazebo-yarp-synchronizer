@@ -1,12 +1,10 @@
 [build-system]
 requires = [
-    "setuptools>=42", 
-    "setuptools_scm[toml]>=3.4", 
-    "cmake>=3.14",
-    "ninja", 
-    "cmake-build-extension", 
-    "pybind11", 
     "wheel",
+    "setuptools>=45",
+    "setuptools_scm[toml]>=6.0",
+    "cmake-build-extension", 
+    "pybind11",
     "yarp-middleware",
     "ycm-cmake-modules",
 ]
@@ -14,3 +12,6 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
 local_scheme = "dirty-tag"
+
+[tool.cibuildwheel]
+build-frontend = "build"
