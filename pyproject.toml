@@ -1,5 +1,15 @@
 [build-system]
-requires = ["setuptools>=42", "setuptools_scm[toml]>=3.4", "cmake>=3.14", "ninja", "cmake-build-extension", "pybind11", "wheel"]
+requires = [
+    "setuptools>=42", 
+    "setuptools_scm[toml]>=3.4", 
+    "cmake>=3.14",
+    "ninja", 
+    "cmake-build-extension", 
+    "pybind11", 
+    "wheel",
+    "yarp-middleware",
+    "ycm-cmake-modules",
+]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]

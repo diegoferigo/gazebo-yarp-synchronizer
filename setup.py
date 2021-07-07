@@ -41,13 +41,15 @@ setup(
         "ninja",
         "cmake-build-extension",
         "pybind11",
+        "yarp-middleware",
+        "ycm-cmake-modules",
     ],
     python_requires='>=3.7',
     install_requires=[],
     ext_modules=[
         CMakeExtension(name='InstallAllTargets',
                        install_prefix="gazebo_yarp_synchronizer",
-                       cmake_depends_on=["pybind11"],
+                       cmake_depends_on=["pybind11", "yarp", "ycm_cmake_modules"],
                        disable_editable=True,
                        cmake_configure_options=[
                            "-DBUILD_SHARED_LIBS:BOOL=OFF",
