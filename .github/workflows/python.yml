@@ -36,11 +36,8 @@ jobs:
 
       - name: Install build dependencies
         run: |
-          sudo sh -c 'echo "deb http://www.icub.org/ubuntu $(lsb_release -cs) contrib/science" > \
-              /etc/apt/sources.list.d/icub.list'
-          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 57A5ACB6110576A6
-          sudo apt-get update
-          sudo apt-get install -y yarp pybind11-dev
+          sudo apt update
+          sudo apt install -y libace-dev
 
       - name: Install sdist
         run: pip -v install dist/*.tar.gz
@@ -86,21 +83,8 @@ jobs:
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_24
           CIBW_ENVIRONMENT_LINUX: AUDITWHEEL_PLAT=manylinux_2_24_x86_64
           CIBW_BEFORE_ALL_LINUX: |
-              echo "deb http://ftp.debian.org/debian stretch-backports main" | tee -a \
-                  /etc/apt/sources.list.d/stretch-backports.list &&\
-              echo "deb http://ftp.debian.org/debian stretch-backports-sloppy main" | tee -a \
-                  /etc/apt/sources.list.d/stretch-backports-sloppy.list &&\
-              apt-get update &&\
-              apt-get install -y --no-install-recommends \
-                  lsb-release lsb-core dirmngr &&\
-              apt-get install -y --no-install-recommends -t stretch-backports-sloppy libarchive13 &&\
-              apt-get install -y --no-install-recommends -t stretch-backports cmake &&\
-              echo "deb http://www.icub.org/debian buster contrib/science" | tee -a \
-                  /etc/apt/sources.list.d/icub.list &&\
-              apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 57A5ACB6110576A6 &&\
-              apt-get update &&\
-              apt-get install -y --no-install-recommends yarp &&\
-              ln -s /usr/lib/libACE.so /usr/lib/libACE-6.4.5.so
+            apt update &&\
+            apt install -y libace-dev
           CIBW_TEST_COMMAND: "python -c 'from gazebo_yarp_synchronizer import GazeboYarpSynchronizer'"
 
       - uses: actions/upload-artifact@v2
